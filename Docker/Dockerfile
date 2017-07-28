@@ -46,6 +46,8 @@ RUN cd /tmp && git clone https://github.com/EOSIO/eos.git --recursive \
   && cd eos && mkdir build && cd build \
   && WASM_LLVM_CONFIG=/opt/wasm/bin/llvm-config cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_INSTALL_PREFIX=/opt/eos ../ \
   && make -j$(nproc) && make install \
+  && mkdir /opt/eos/contracts \
+  && cp /tmp/eos/contracts/* /opt/eos/contracts/ \
   && rm -rf /tmp/eos*
 
 RUN mkdir -p /opt/eos/bin/data-dir
